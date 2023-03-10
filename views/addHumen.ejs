@@ -1,0 +1,40 @@
+<%- include('includes/head.ejs') %>
+<title>Add New Adopter😻</title>
+</head>
+<%- include('includes/nav.ejs') %>
+
+<body>
+  <form method="POST">
+    <div class="form-control">
+      <label for="fName">First Name</label>
+      <input type="text" name="fName" <% if(editing) { %> value=" <%= humens.fName %> " <% } %>>
+      <br>
+    </div>
+    <div class="form-control">
+      <label for="lName">Last Name</label>
+      <input type="text" name="lName" <% if(editing) { %> value=" <%= humens.fName %> " <% } %>>
+      <br>
+    </div>
+    <div class="form-control">
+      <label for="birth">Birth</label>
+      <input type="date" name="birth" <% if(editing) { %> value=" <%= humens.birth %> " <% } %>>
+      <br>
+    </div>
+    <div class="form-control">
+      <label for="number">Mobile Number</label>
+      <input type="number" name="number" <% if(editing) { %> value=" <%= humens.number %> " <% } %>>
+      <br>
+    </div>
+    <div class="form-control">
+      <label for="address">Address</label>
+      <input type="text" name="address" <% if(editing) { %> value=" <%= humens.address %> " <% } %>>
+      <br>
+    </div>
+    <div class="addcat">
+      <input class="button" type="submit">
+      <input class="button" type="reset">
+    </div>
+  </form>
+</body>
+
+</html>

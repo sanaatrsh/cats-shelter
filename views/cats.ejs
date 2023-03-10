@@ -1,0 +1,101 @@
+<%- include('includes/head.ejs') %>
+<title>Cats</title>
+</head>
+
+<body class="index">
+  <%- include('includes/nav.ejs') %>
+  <h1> <% if(showCats){ %> <%= humen.fName %>'s Cats <% }else { %> CATS <% } %></h1>
+  <a class="add" href="/cats/addCat">Add new cat!🐱</a>
+  <label for="search"></label>
+  <section id="search" class="search-wrap">
+    <form action="/cats/search" method="get" class="search-form">
+      <input type="search" name="term" placeholder="search for a cat">
+      <input type="submit" value="Search">
+    </form>
+  </section>
+  <% if (cats.length>0 ){ %>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          name
+        </th>
+        <th>
+          age
+        </th>
+        <th>
+          gender
+        </th>
+        <th>
+          breed
+        </th>
+        <th>
+          color
+        </th>
+        <% if(!showCats){ %>
+        <th>
+          adopted
+        </th>
+        <th>
+          owner
+        </th>
+        <% } %>
+        <th>
+          notes
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <% for (let cat of cats) { %>
+    <tbody>
+      <tr>
+        <td>
+          <% if(showCats){ %> <%= cat.catName %> <% } else{  %> <%= cat.name %> <% } %>
+        </td>
+        <td>
+          <% if(showCats){ %> <%= cat.catAge %> <% } else{  %> <%= cat.age %><% } %>
+        </td>
+        <td>
+          <% if(showCats){ %> <%= cat.catGender %> <% } else{  %> <%= cat.gender %><% } %>
+        </td>
+        <td>
+          <% if(showCats){ %> <%= cat.catBreed %> <% } else{  %> <%= cat.breed %><% } %>
+        </td>
+        <td>
+          <% if(showCats){ %> <%= cat.catColor %> <% } else{  %> <%= cat.color %><% } %>
+        </td>
+        <% if(!showCats){ %>
+        <td>
+          <%= cat.adopted %>
+        </td>
+        <td>
+          <%= cat.adopter.adopterName %>
+        </td>
+        <% } %>
+        <td>
+          <% if(showCats){ %> <%= cat.catNotes %> <% } else{  %> <%= cat.notes %><% } %>
+        </td>
+        <% if(!showCats){ %>
+        <td>
+          <a href="/cats/edit-cat/<%= cat._id %>?edit=true">
+            Edit
+          </a>
+        </td>
+        <td>
+          <form <% if(showCats){ %> action="/humens/show-cats/<%= humen._id  %>/remove-cat/<%= cat._id  %>" <% } else{  %> action="/cats/remove-cat/<%= cat._id  %>" <% } %> method="POST">
+            <button type="submit">
+              Remove
+            </button>
+          </form>
+        </td>
+        <% } %>
+      </tr>
+    </tbody>
+    <% } %>
+  </table>
+  <% } else { %>
+  <h1> No cats here yet!😿</h1>
+  <% } %>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<%- include('includes/head.ejs') %>
+<title>Add New Cat🐱</title>
+</head>
+
+<body>
+  <%- include('includes/nav.ejs') %>
+
+  <form method="POST">
+    <div class="form-control">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" <% if(editing) { %> value=" <%= cat.name %> " <% } %>>
+    </div>
+    <br>
+    <div class="form-control">
+      <label for="age">Age</label>
+      <input type="number" id="age" name="age" min="0" max="30" <% if(editing) { %> value=" <%= cat.age %> " <% } %>>
+    </div>
+    <br>
+    <div class="form-control">
+      <label for="gender">Gender</label>
+      <input list="genders" id="gender" name="gender" <% if(editing) { %> value=" <%= cat.gender %> " <% } %>>
+      <datalist id="genders">
+        <option value="male">
+        <option value="female">
+      </datalist>
+    </div>
+    <br>
+    <div class="form-control">
+      <label for="breed">Breed</label>
+      <input list="breeds" id="breed" name="breed" <% if(editing) { %> value=" <%= cat.breed  %> " <% } %>>
+      <datalist id="breeds">
+        <option value="British shorthair">
+        <option value="Siamese">
+        <option value="Ragboll">
+        <option value="Siberian">
+      </datalist>
+    </div>
+    <div class="form-control">
+      <label for="color">Color</label>
+      <input list="colors" id="color" name="color" <% if(editing) { %> value=" <%= cat.color  %> " <% } %>>
+      <datalist id="colors">
+        <option value="white">
+        <option value="black">
+        <option value="silever">
+        <option value="brown">
+        <option value="orange">
+      </datalist>
+    </div>
+    <br>
+    <% if(editing) { %>
+
+    <label for="humen">Adopter</label>
+    <a class="input" href="/cats/edit-cat/<%= cat._id %>/add-adopter?edit=true" id="humen">add adopter</a>
+    <br>
+    <% } %>
+    <div class="form-control">
+      <label for="note">Specail Notes</label>
+      <input type="text" name="notes" id="note" <% if(editing) {  %> value=" <%= cat.notes %> " <% } %>></textarea>
+      <br>
+    </div>
+    <div class="addcat">
+      <input class="button" type="submit">
+      <input class="button" type="reset">
+    </div>
+  </form>
+</body>
+
+</html>

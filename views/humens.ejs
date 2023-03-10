@@ -1,0 +1,96 @@
+<%- include('includes/head.ejs') %>
+<title>Adopters</title>
+</head>
+
+<body class="index">
+  <%- include('includes/nav.ejs') %>
+  <h1>ADOPTERS</h1>
+  <a class="add" <% if(addAdopter) {  %>href="/humens/addHumen/?addAdopter=true" <% } else { %> href="/humens/addHumen" <% } %>>Add New Adopter😻</a>
+  <label for="search"></label>
+  <section id="search" class="search-wrap">
+    <form action="/humens/search" method="get" class="search-form">
+      <input type="search" name="term" placeholder="search for an adopter">
+      <input type="submit" value="Search">
+    </form>
+  </section>
+  <% if (humens.length>0 ){ %>
+  <table>
+    <tr>
+      <th>
+        First Name
+      </th>
+      <th>
+        Last Name
+      </th>
+      <th>
+        Birth
+      </th>
+      <th>
+        Number
+      </th>
+      <th>
+        Address
+      </th>
+      <th>
+        Cats Number
+      </th>
+    </tr>
+    <% for (let humen of humens) { %>
+    <tr>
+      <td>
+        <%= humen.fName %>
+      </td>
+      <td>
+        <%= humen.lName %>
+      </td>
+      <td>
+        <%= humen.birth %>
+      </td>
+      <td>
+        <%= humen.number %>
+      </td>
+      <td>
+        <%= humen.address %>
+      </td>
+      <td>
+        <%= humen.catsNo %>
+      </td>
+      <% if(!addAdopter) { %>
+      <td>
+        <a href="/humens/edit-humen/<%= humen._id %>?edit=true">
+          Edit
+        </a>
+      </td>
+      <td>
+        <a href="/humens/show-cats/<%= humen._id %>">
+          Show Cats
+        </a>
+      </td>
+      <td>
+        <form action="/humens/remove-humen/<%=humen._id  %>" method="POST">
+          <button type="submit">
+            Remove
+          </button>
+        </form>
+      </td>
+      <% } else { %>
+      <% if(editing) {%>
+      <td>
+        <form action="add-adopter/<%=humen._id  %>?edit=true" method="POST">
+          <button type="submit">
+            Add Cat!
+          </button>
+        </form>
+      </td>
+      <% } %>
+      <% } %>
+    </tr>
+
+    <% } %>
+  </table>
+  <% } else { %>
+  <h1> No Adopters here yet!😿</h1>
+  <% } %>
+</body>
+
+</html>
