@@ -17,6 +17,8 @@
     "express-validator": "^6.15.0",
     "mongoose": "^6.9.0",
     "nodemon": "^2.0.20",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "sequelize": "^6.29.3",
+    "sequelize-cli": "^6.6.0"
   }
 }
